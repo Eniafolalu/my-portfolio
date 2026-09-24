@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --background: #09090b;
+  --background: #0d0e15;
   --foreground: #ededed;
-  --surface: #121215;
-  --surface-border: #23232a;
-  --surface-muted: #1c1c22;
+  --surface: #141522;
+  --surface-border: #24253b;
+  --surface-muted: #18192a;
 }
 
 * {
@@ -34,8 +34,8 @@ body {
 
 /* Editorial selection */
 ::selection {
-  background-color: #ededed;
-  color: #09090b;
+  background-color: #f97316;
+  color: #ffffff;
 }
 
 /* Editorial subtle custom scrollbar */

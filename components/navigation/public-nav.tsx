@@ -91,10 +91,10 @@ export function PublicNav({
             href={calendlyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-1.5 rounded-full border border-editorial-200/20 bg-surface px-4 py-2 text-xs font-medium text-editorial-100 transition-all hover:border-editorial-200/40 hover:bg-surface-hover"
+            className="group inline-flex items-center gap-1.5 rounded-full border border-surface-border bg-surface px-4 py-2 text-xs font-medium text-editorial-100 transition-all hover:border-orange-500/40 hover:bg-surface-hover hover:text-orange-400"
           >
             <span>Book a Call</span>
-            <ArrowUpRight className="h-3.5 w-3.5 text-editorial-400 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-editorial-100" />
+            <ArrowUpRight className="h-3.5 w-3.5 text-editorial-400 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-orange-400" />
           </a>
         </nav>
 

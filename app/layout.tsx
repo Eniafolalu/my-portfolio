@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Bricolage_Grotesque, Manrope } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-bricolage",
+  display: "swap",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
   display: "swap",
 });
 
@@ -52,8 +58,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="bg-background text-foreground min-h-screen antialiased selection:bg-foreground selection:text-background">
+    <html lang="en" className={`${bricolage.variable} ${manrope.variable}`}>
+      <body className="bg-background text-foreground font-sans min-h-screen antialiased selection:bg-orange-500 selection:text-white">
         {children}
       </body>
     </html>

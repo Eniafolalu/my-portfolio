@@ -9,13 +9,33 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#09090B",
+        background: "#0D0E15",
         foreground: "#EDEDED",
         surface: {
-          DEFAULT: "#121215",
-          hover: "#18181D",
-          border: "#23232A",
-          muted: "#1C1C22",
+          DEFAULT: "#141522",
+          hover: "#1C1D2F",
+          border: "#24253B",
+          muted: "#18192A",
+        },
+        navy: {
+          DEFAULT: "#1A1A2E",
+          card: "#141522",
+          border: "#24253B",
+          light: "#23233D",
+        },
+        orange: {
+          DEFAULT: "#F97316",
+          50: "#FFF7ED",
+          100: "#FFEDD5",
+          200: "#FED7AA",
+          300: "#FDBA74",
+          400: "#FB923C",
+          500: "#F97316",
+          600: "#EA580C",
+          700: "#C2410C",
+          800: "#9A3412",
+          900: "#7C2D12",
+          950: "#431407",
         },
         editorial: {
           50: "#FAFAFA",
@@ -31,14 +51,16 @@ const config: Config = {
           950: "#09090B",
         },
         accent: {
-          DEFAULT: "#EDEDED",
-          highlight: "#3B82F6",
-          subtle: "rgba(255, 255, 255, 0.08)",
+          DEFAULT: "#F97316",
+          orange: "#F97316",
+          navy: "#1A1A2E",
+          highlight: "#F97316",
+          subtle: "rgba(249, 115, 22, 0.12)",
         },
       },
       fontFamily: {
         sans: [
-          "var(--font-inter)",
+          "var(--font-manrope)",
           "system-ui",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -46,8 +68,29 @@ const config: Config = {
           "Roboto",
           "sans-serif",
         ],
+        display: [
+          "var(--font-bricolage)",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "sans-serif",
+        ],
+        bricolage: [
+          "var(--font-bricolage)",
+          "system-ui",
+          "-apple-system",
+          "sans-serif",
+        ],
+        manrope: [
+          "var(--font-manrope)",
+          "system-ui",
+          "-apple-system",
+          "sans-serif",
+        ],
         editorial: [
-          "var(--font-editorial)",
+          "var(--font-bricolage)",
           "Playfair Display",
           "Georgia",
           "serif",
@@ -60,8 +103,8 @@ const config: Config = {
         widest: "0.15em",
       },
       animation: {
-        "marquee": "marquee 35s linear infinite",
-        "marquee-reverse": "marquee-reverse 35s linear infinite",
+        "marquee": "marquee 45s linear infinite",
+        "marquee-reverse": "marquee-reverse 45s linear infinite",
         "fade-in": "fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards",
       },
       keyframes: {

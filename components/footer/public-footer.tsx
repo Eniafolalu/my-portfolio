@@ -48,7 +48,7 @@ export function PublicFooter({
                 href={calendlyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full bg-editorial-100 px-6 py-3.5 text-sm font-semibold text-background transition-all hover:bg-white"
+                className="group inline-flex items-center gap-2 rounded-full bg-orange-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 transition-all hover:bg-orange-600 hover:scale-[1.02] active:scale-[0.98]"
               >
                 <Calendar className="h-4 w-4" />
                 <span>Book a Call</span>
@@ -56,7 +56,7 @@ export function PublicFooter({
               </a>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full border border-surface-border bg-surface px-6 py-3.5 text-sm font-semibold text-editorial-100 transition-all hover:border-editorial-200/40 hover:bg-surface-hover"
+                className="inline-flex items-center gap-2 rounded-full border border-surface-border bg-surface px-6 py-3.5 text-sm font-semibold text-editorial-100 transition-all hover:border-orange-500/40 hover:bg-surface-hover"
               >
                 <MessageSquare className="h-4 w-4 text-editorial-400" />
                 <span>Send a Message</span>
