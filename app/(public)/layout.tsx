@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getSiteSettings, getEnabledSocialLinks } from "@/lib/data";
 import { PublicNav } from "@/components/navigation/public-nav";
 import { PublicFooter } from "@/components/footer/public-footer";

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { getPublishedProjects, getSiteSettings } from "@/lib/data";

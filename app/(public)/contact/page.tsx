@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Calendar, ArrowUpRight, Mail } from "lucide-react";
 import { getSiteSettings, getTestimonials } from "@/lib/data";
 import { ContactForm } from "@/components/contact/contact-form";
