@@ -41,11 +41,6 @@ export default async function HomePage() {
             I design digital products that make complex experiences feel simple.
           </h1>
 
-          <p className="mt-6 max-w-2xl text-base font-normal leading-relaxed text-editorial-300 sm:text-lg md:text-xl">
-            {settings?.about_description ||
-              "Product Designer focused on creating intuitive, scalable and visually refined experiences across mobile apps, websites and dashboards."}
-          </p>
-
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a
               href={calendlyUrl}
@@ -94,7 +89,7 @@ export default async function HomePage() {
             </div>
             <div className="flex flex-col items-center justify-center sm:px-4">
               <span className="font-display text-4xl font-bold tracking-tight text-orange-500 sm:text-5xl">
-                4+
+                3+
               </span>
               <span className="mt-2 text-xs font-medium uppercase tracking-wider text-editorial-300 sm:text-sm">
                 Years Specialized Experience

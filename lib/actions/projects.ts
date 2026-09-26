@@ -61,7 +61,10 @@ export async function createProject(formData: FormData) {
     const fileName = `${slug}-cover-${Date.now()}.${ext}`;
     const { error: uploadError } = await supabase.storage
       .from("project-images")
-      .upload(fileName, coverFile, { upsert: true });
+      .upload(fileName, coverFile, {
+        contentType: coverFile.type || undefined,
+        upsert: false,
+      });
 
     if (uploadError) {
       return { error: `Cover image upload failed: ${uploadError.message}` };
@@ -118,7 +121,10 @@ export async function createProject(formData: FormData) {
     const fileName = `${slug}-gallery-${Date.now()}-${i}.${ext}`;
     const { error: gUploadError } = await supabase.storage
       .from("project-images")
-      .upload(fileName, file, { upsert: true });
+      .upload(fileName, file, {
+        contentType: file.type || undefined,
+        upsert: false,
+      });
 
     if (gUploadError) continue;
 
@@ -187,7 +193,10 @@ export async function updateProject(id: string, formData: FormData) {
     const fileName = `${slug}-cover-${Date.now()}.${ext}`;
     const { error: uploadError } = await supabase.storage
       .from("project-images")
-      .upload(fileName, coverFile, { upsert: true });
+      .upload(fileName, coverFile, {
+        contentType: coverFile.type || undefined,
+        upsert: false,
+      });
 
     if (uploadError) {
       return { error: `Cover image upload failed: ${uploadError.message}` };
@@ -226,7 +235,10 @@ export async function updateProject(id: string, formData: FormData) {
     const fileName = `${id}-gallery-${Date.now()}.${ext}`;
     const { error: gUploadError } = await supabase.storage
       .from("project-images")
-      .upload(fileName, file, { upsert: true });
+      .upload(fileName, file, {
+        contentType: file.type || undefined,
+        upsert: false,
+      });
 
     if (gUploadError) continue;
 
