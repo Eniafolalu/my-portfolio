@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { Project, ProjectCategory } from "@/types/portfolio";
 import { cn } from "@/lib/utils";
+import { FadeUp, StaggerList, MotionItem } from "@/components/ui/motion";
 
 interface ExploreWorkSectionProps {
   projects: Project[];
@@ -29,7 +30,7 @@ export function ExploreWorkSection({ projects = [] }: ExploreWorkSectionProps) {
   return (
     <section className="mx-auto w-full max-w-7xl px-6 md:px-8">
       {/* Header & Category Controls */}
-      <div className="flex flex-col justify-between gap-6 border-b border-surface-border pb-8 md:flex-row md:items-end">
+      <FadeUp className="flex flex-col justify-between gap-6 border-b border-surface-border pb-8 md:flex-row md:items-end">
         <div>
           <span className="text-xs font-semibold uppercase tracking-widest text-editorial-400">
             SELECTED PORTFOLIO
@@ -49,7 +50,7 @@ export function ExploreWorkSection({ projects = [] }: ExploreWorkSectionProps) {
           <span>Explore All UI Work</span>
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
         </Link>
-      </div>
+      </FadeUp>
 
       {/* Category Tabs Filter */}
       <div className="mt-8 flex items-center justify-between gap-4">
@@ -85,13 +86,13 @@ export function ExploreWorkSection({ projects = [] }: ExploreWorkSectionProps) {
         </div>
       ) : (
         <div className="mt-8 w-full max-w-full min-w-0">
-          <div className="flex w-full max-w-full min-w-0 gap-5 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory no-scrollbar overscroll-x-contain md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-5 lg:gap-6 md:overflow-visible md:pb-0 md:pt-0">
+          <StaggerList key={selectedCategory} className="flex w-full max-w-full min-w-0 gap-5 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory no-scrollbar overscroll-x-contain md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-5 lg:gap-6 md:overflow-visible md:pb-0 md:pt-0">
             {filteredProjects.map((project) => {
               const projectUrl = project.behance_url || "/projects";
               const isExternal = !!project.behance_url;
 
               return (
-                <article
+                <MotionItem
                   key={project.id}
                   className="group flex w-[84vw] max-w-[320px] sm:w-[340px] min-w-0 flex-shrink-0 flex-col overflow-hidden rounded-2xl border border-surface-border bg-surface snap-start transition-all duration-300 hover:border-orange-500/40 hover:bg-surface-hover md:w-auto md:max-w-none md:flex-shrink"
                 >
@@ -147,10 +148,10 @@ export function ExploreWorkSection({ projects = [] }: ExploreWorkSectionProps) {
                     </div>
                   )}
                 </div>
-              </article>
+                </MotionItem>
             );
           })}
-          </div>
+          </StaggerList>
         </div>
       )}
     </section>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Menu, X, ArrowUpRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface PublicNavProps {
@@ -63,8 +64,8 @@ export function PublicNav({
           </div>
         </Link>
 
-        {/* Right Side: Desktop Navigation */}
-        <nav className="hidden items-center gap-8 md:flex">
+        {/* Right Side: Desktop Navigation — visible at lg+ only */}
+        <nav className="hidden items-center gap-8 lg:flex">
           <ul className="flex items-center gap-7 text-sm font-medium">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
@@ -93,29 +94,22 @@ export function PublicNav({
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-1.5 rounded-full border border-surface-border bg-surface px-4 py-2 text-xs font-medium text-editorial-100 transition-all hover:border-orange-500/40 hover:bg-surface-hover hover:text-orange-400"
           >
-            <span>Book a Call</span>
+            <span className="hidden lg:block">Book a Call</span>
+            <span className="lg:hidden">Call</span>
             <ArrowUpRight className="h-3.5 w-3.5 text-editorial-400 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-orange-400" />
           </a>
         </nav>
 
-        {/* Mobile Hamburger Button */}
-        <div className="flex items-center gap-3 md:hidden">
+        {/* Hamburger — visible on mobile & tablet (below lg) */}
+        <div className="flex items-center gap-3 lg:hidden">
           <a
             href={calendlyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="block md:hidden rounded-full border border-surface-border bg-surface px-3 py-1.5 text-xs font-medium text-editorial-100"
+            className="rounded-full border border-surface-border bg-surface px-3 py-1.5 text-xs font-medium text-editorial-100 transition-all hover:border-orange-500/40 hover:text-orange-400"
           >
-            Book
-          </a>
-          <a
-            href={calendlyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:block rounded-full border border-surface-border bg-surface px-3 py-1.5 text-xs font-medium text-editorial-100"
-          >
-            Book a Call
-          </a>
+            <span className="hidden lg:block">Book a Call</span>
+            <span className="lg:hidden">Call</span>          </a>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-surface-border bg-surface text-editorial-300 transition-colors hover:bg-surface-hover hover:text-editorial-100"
@@ -130,32 +124,42 @@ export function PublicNav({
         </div>
       </div>
 
-      {/* Mobile Menu Drawer */}
-      {mobileMenuOpen && (
-        <div className="border-b border-surface-border bg-background/95 px-6 py-6 backdrop-blur-xl md:hidden">
-          <ul className="flex flex-col space-y-4 text-base font-medium">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={cn(
-                      "block py-1 transition-colors",
-                      isActive
-                        ? "text-editorial-50 font-semibold"
-                        : "text-editorial-400 hover:text-editorial-100"
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
+      {/* Mobile/Tablet Menu Drawer — visible below lg */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden border-b border-surface-border bg-background/95 backdrop-blur-xl lg:hidden"
+          >
+            <div className="px-6 py-6">
+              <ul className="flex flex-col space-y-4 text-base font-medium">
+                {navLinks.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className={cn(
+                          "block py-1 transition-colors",
+                          isActive
+                            ? "text-editorial-50 font-semibold"
+                            : "text-editorial-400 hover:text-editorial-100"
+                        )}
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

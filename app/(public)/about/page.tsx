@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getSiteSettings, getCareerEntries } from "@/lib/data";
+import { FadeUp, StaggerList, MotionItem } from "@/components/ui/motion";
 
 export default async function AboutPage() {
   const [settings, careerEntries] = await Promise.all([
@@ -23,7 +24,9 @@ export default async function AboutPage() {
   ];
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-20 md:px-8 md:py-28">
+    <div className="relative mx-auto max-w-7xl px-6 py-20 md:px-8 md:py-28">
+      {/* Page-level ambient glow */}
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_10%_10%,rgba(249,115,22,0.06)_0%,transparent_50%)] motion-safe:block" />
 
       {/* ---------------------------------------------------------------- */}
       {/* HERO — two-column editorial layout                               */}
@@ -31,7 +34,7 @@ export default async function AboutPage() {
       <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-20">
 
         {/* LEFT: copy */}
-        <div className="flex flex-col justify-center lg:col-span-7">
+        <FadeUp className="flex flex-col justify-center lg:col-span-7">
           <span className="text-xs font-semibold uppercase tracking-widest text-editorial-400">
             ABOUT ME
           </span>
@@ -43,11 +46,10 @@ export default async function AboutPage() {
             {settings?.about_description ||
               "Product Designer focused on creating intuitive, scalable and visually refined experiences across mobile apps, websites and dashboards."}
           </p>
-
-        </div>
+        </FadeUp>
 
         {/* RIGHT: portrait image */}
-        <div className="flex items-start justify-center lg:col-span-5">
+        <FadeUp delay={0.15} className="flex items-start justify-center lg:col-span-5">
           <div className="relative w-full max-w-sm lg:max-w-md">
             {/* Ambient Background Glow */}
             <div className="absolute -inset-2 rounded-[2.5rem] bg-gradient-to-tr from-orange-500/20 via-orange-500/5 to-transparent blur-2xl opacity-60" />
@@ -84,42 +86,45 @@ export default async function AboutPage() {
               </div>
             </div>
           </div>
-        </div>
+        </FadeUp>
 
       </div>
 
       {/* Skills Matrix */}
-      <div className="mt-20 border-t border-surface-border pt-16">
+      <FadeUp className="relative mt-20 border-t border-surface-border pt-16 overflow-hidden">
+        {/* subtle dot grid */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 [background-image:radial-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:24px_24px]" />
+        <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 h-[200px] w-[300px] rounded-full bg-orange-500/[0.04] blur-[80px]" />
         <span className="text-xs font-semibold uppercase tracking-widest text-editorial-400">
           CORE CAPABILITIES
         </span>
         <h2 className="mt-2 text-2xl font-medium text-editorial-50">
           Skills &amp; Expertise
         </h2>
-        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        <StaggerList className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {skills.map((skill) => (
-            <div
+            <MotionItem
               key={skill}
               className="rounded-xl border border-surface-border bg-surface p-4 text-xs font-medium text-editorial-200"
             >
               {skill}
-            </div>
+            </MotionItem>
           ))}
-        </div>
-      </div>
+        </StaggerList>
+      </FadeUp>
 
       {/* Career Timeline */}
-      <div id="timeline" className="mt-24 border-t border-surface-border pt-16">
+      <FadeUp id="timeline" className="mt-24 border-t border-surface-border pt-16">
         <span className="text-xs font-semibold uppercase tracking-widest text-editorial-400">
-          CAREER & WORK HISTORY
+          CAREER &amp; WORK HISTORY
         </span>
         <h2 className="mt-2 text-2xl font-medium text-editorial-50 sm:text-3xl">
           JOB EXPERIENCE
         </h2>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <StaggerList className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
           {careerEntries.map((entry) => (
-            <div
+            <MotionItem
               key={entry.id}
               className="group flex flex-col justify-between rounded-2xl border border-surface-border bg-surface p-6 sm:p-8 transition-all hover:border-orange-500/30 hover:bg-surface-hover"
             >
@@ -139,10 +144,10 @@ export default async function AboutPage() {
                   {entry.description}
                 </p>
               </div>
-            </div>
+            </MotionItem>
           ))}
-        </div>
-      </div>
+        </StaggerList>
+      </FadeUp>
     </div>
   );
 }

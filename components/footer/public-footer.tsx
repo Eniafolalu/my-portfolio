@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, MessageSquare, Calendar } from "lucide-react";
 import { SocialLink } from "@/types/portfolio";
+import { FadeUp } from "@/components/ui/motion";
 
 interface PublicFooterProps {
   calendlyUrl?: string;
@@ -32,7 +33,7 @@ export function PublicFooter({
     <footer className="border-t border-surface-border bg-background pt-24 pb-16">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
         {/* Main CTA Section */}
-        <div className="relative overflow-hidden rounded-3xl border border-surface-border bg-surface/50 p-8 sm:p-12 lg:p-16">
+        <FadeUp className="relative overflow-hidden rounded-3xl border border-surface-border bg-surface/50 p-8 sm:p-12 lg:p-16">
           <div className="max-w-3xl space-y-6">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-editorial-400">
               HAVE A PRODUCT IN MIND?
@@ -65,11 +66,11 @@ export function PublicFooter({
               </Link>
             </div>
           </div>
-        </div>
+        </FadeUp>
 
         {/* Social Links & Meta */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-6 border-t border-surface-border/50 pt-8 sm:flex-row">
-          <div className="flex flex-wrap items-center justify-center gap-6">
+        <FadeUp delay={0.1} className="mt-16 flex flex-col items-center justify-between gap-6 border-t border-surface-border/50 pt-8 sm:flex-row">
+          <div className="grid grid-cols-3 items-center justify-center gap-6">
             {displayedSocials.map((social) => (
               <a
                 key={social.id}
@@ -87,7 +88,7 @@ export function PublicFooter({
           <div className="text-xs text-editorial-500">
             © {currentYear} {ownerName}. All rights reserved.
           </div>
-        </div>
+        </FadeUp>
       </div>
     </footer>
   );
