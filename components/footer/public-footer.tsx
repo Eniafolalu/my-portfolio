@@ -51,7 +51,8 @@ export function PublicFooter({
                 className="group inline-flex items-center gap-2 rounded-full bg-orange-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 transition-all hover:bg-orange-600 hover:scale-[1.02] active:scale-[0.98]"
               >
                 <Calendar className="h-4 w-4" />
-                <span>Book a Call</span>
+                <span className="hidden md:block">Book a Call</span>
+                <span className="block md:hidden">Book</span>
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
               <Link
@@ -59,7 +60,8 @@ export function PublicFooter({
                 className="inline-flex items-center gap-2 rounded-full border border-surface-border bg-surface px-6 py-3.5 text-sm font-semibold text-editorial-100 transition-all hover:border-orange-500/40 hover:bg-surface-hover"
               >
                 <MessageSquare className="h-4 w-4 text-editorial-400" />
-                <span>Send a Message</span>
+                <span className="hidden md:block">Send a Message</span>
+                <span className="block md:hidden">Message</span>
               </Link>
             </div>
           </div>

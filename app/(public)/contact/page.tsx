@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic";
 
-import { Calendar, ArrowUpRight, Mail } from "lucide-react";
+import { Calendar, ArrowUpRight, Mail, MessageCircle } from "lucide-react";
 import { getSiteSettings, getTestimonials } from "@/lib/data";
 import { ContactForm } from "@/components/contact/contact-form";
 
@@ -68,6 +68,19 @@ export default async function ContactPage() {
               DIRECT CHANNELS
             </span>
             <div className="space-y-3 pt-2">
+              <a
+                href="https://wa.me/2348135526944"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between text-sm text-editorial-200 hover:text-white"
+              >
+                <div className="flex items-center gap-2.5">
+                  <MessageCircle className="h-4 w-4 text-emerald-400" />
+                  <span>WhatsApp (+234 813 552 6944)</span>
+                </div>
+                <ArrowUpRight className="h-3.5 w-3.5 text-editorial-500" />
+              </a>
+
               <a
                 href={`mailto:${contactEmail}`}
                 className="flex items-center justify-between text-sm text-editorial-200 hover:text-white"

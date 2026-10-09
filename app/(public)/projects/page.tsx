@@ -68,7 +68,7 @@ export default async function ProjectsPage() {
               </div>
             </a>
 
-            <div className="flex flex-1 flex-col justify-between p-8">
+            <div className="flex flex-1 flex-col justify-between p-3.5">
               <div>
                 <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-editorial-400">
                   <span>{project.category}</span>

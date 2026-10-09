@@ -104,7 +104,15 @@ export function PublicNav({
             href={calendlyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full border border-surface-border bg-surface px-3 py-1.5 text-xs font-medium text-editorial-100"
+            className="block md:hidden rounded-full border border-surface-border bg-surface px-3 py-1.5 text-xs font-medium text-editorial-100"
+          >
+            Book
+          </a>
+          <a
+            href={calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:block rounded-full border border-surface-border bg-surface px-3 py-1.5 text-xs font-medium text-editorial-100"
           >
             Book a Call
           </a>

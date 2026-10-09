@@ -25,7 +25,7 @@ export default async function HomePage() {
   const calendlyUrl = settings?.calendly_url || "https://calendly.com";
 
   return (
-    <div className="flex flex-col gap-24 pb-20 md:gap-36">
+    <div className="flex flex-col gap-24 pb-20 md:gap-36 w-full max-w-full overflow-x-hidden min-w-0">
       {/* ------------------------------------------------------------- */}
       {/* 1. HERO + INFINITE 3D GALLERY + HERO STATS */}
       {/* ------------------------------------------------------------- */}
@@ -49,7 +49,8 @@ export default async function HomePage() {
               className="group inline-flex items-center gap-2 rounded-full bg-orange-500 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 transition-all hover:bg-orange-600 hover:scale-[1.02] active:scale-[0.98]"
             >
               <Calendar className="h-4 w-4" />
-              <span>Book a Call</span>
+              <span className="block md:hidden">Book</span>
+              <span className="hidden md:block">Book a Call</span>
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
 
@@ -70,7 +71,7 @@ export default async function HomePage() {
 
         {/* 3. HERO CREDIBILITY STATISTICS */}
         <div className="mx-auto mt-8 w-full max-w-4xl px-6 md:mt-12">
-          <div className="grid grid-cols-1 gap-8 text-center sm:grid-cols-3 sm:gap-4 sm:divide-x sm:divide-surface-border/60">
+          <div className="grid gap-8 text-center grid-cols-3 sm:gap-4 sm:divide-x sm:divide-surface-border/60">
             <div className="flex flex-col items-center justify-center sm:px-4">
               <span className="font-display text-4xl font-bold tracking-tight text-orange-500 sm:text-5xl">
                 20+
@@ -107,33 +108,42 @@ export default async function HomePage() {
       {/* ------------------------------------------------------------- */}
       {/* 5. DESIGN SERVICES */}
       {/* ------------------------------------------------------------- */}
-      <section className="mx-auto max-w-7xl px-6 md:px-8">
-        <div className="max-w-2xl">
-          <span className="text-xs font-semibold uppercase tracking-widest text-editorial-400">
-            CAPABILITIES
+      <section className="mx-auto w-full max-w-7xl px-6 md:px-8">
+        <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
+          <div className="max-w-2xl">
+            <span className="text-xs font-semibold uppercase tracking-widest text-editorial-400">
+              CAPABILITIES
+            </span>
+            <h2 className="mt-2 font-display text-2xl font-medium tracking-tight text-editorial-50 sm:text-4xl">
+              DESIGN SERVICES
+            </h2>
+          </div>
+          <span className="shrink-0 text-xs text-editorial-400 md:hidden">
+            Swipe to explore →
           </span>
-          <h2 className="mt-2 font-display text-2xl font-medium tracking-tight text-editorial-50 sm:text-4xl">
-            DESIGN SERVICES
-          </h2>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => (
-            <div
-              key={service.id}
-              className="group rounded-2xl border border-surface-border bg-surface p-8 transition-all hover:border-orange-500/30 hover:bg-surface-hover"
-            >
-              <span className="text-xs font-mono text-orange-400">
-                0{service.sort_order}
-              </span>
-              <h3 className="mt-4 font-display text-xl font-medium text-editorial-100">
-                {service.title}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-editorial-400">
-                {service.description}
-              </p>
-            </div>
-          ))}
+        <div className="mt-8 w-full max-w-full min-w-0">
+          <div className="flex w-full max-w-full min-w-0 gap-4 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory no-scrollbar overscroll-x-contain md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:overflow-visible md:pb-0 md:pt-0">
+            {services.map((service) => (
+              <div
+                key={service.id}
+                className="group flex w-[84vw] max-w-[320px] sm:w-[340px] min-w-0 flex-shrink-0 flex-col justify-between rounded-2xl border border-surface-border bg-surface p-6 snap-start transition-all hover:border-orange-500/30 hover:bg-surface-hover md:w-auto md:max-w-none md:flex-shrink md:p-8"
+              >
+                <div>
+                  <span className="text-xs font-mono text-orange-400">
+                    0{service.sort_order}
+                  </span>
+                  <h3 className="mt-4 font-display text-lg font-medium text-editorial-100 sm:text-xl">
+                    {service.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-editorial-400">
+                    {service.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -165,35 +175,42 @@ export default async function HomePage() {
       {/* ------------------------------------------------------------- */}
       {/* 7. WHAT CLIENTS SAY */}
       {/* ------------------------------------------------------------- */}
-      <section className="mx-auto max-w-7xl px-6 md:px-8">
-        <div className="max-w-2xl">
-          <span className="text-xs font-semibold uppercase tracking-widest text-editorial-400">
-            ENDORSEMENTS
+      <section className="mx-auto w-full max-w-7xl px-6 md:px-8">
+        <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
+          <div className="max-w-2xl">
+            <span className="text-xs font-semibold uppercase tracking-widest text-editorial-400">
+              ENDORSEMENTS
+            </span>
+            <h2 className="mt-2 font-display text-2xl font-medium tracking-tight text-editorial-50 sm:text-4xl">
+              WHAT CLIENTS SAY
+            </h2>
+          </div>
+          <span className="shrink-0 text-xs text-editorial-400 md:hidden">
+            Swipe to read →
           </span>
-          <h2 className="mt-2 font-display text-2xl font-medium tracking-tight text-editorial-50 sm:text-4xl">
-            WHAT CLIENTS SAY
-          </h2>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((item) => (
-            <div
-              key={item.id}
-              className="flex flex-col justify-between rounded-2xl border border-surface-border bg-surface p-8 transition-all hover:border-orange-500/30 hover:bg-surface-hover"
-            >
-              <p className="text-sm leading-relaxed text-editorial-300 italic">
-                &ldquo;{item.testimonial}&rdquo;
-              </p>
-              <div className="mt-6 border-t border-surface-border/50 pt-4">
-                <div className="text-sm font-semibold text-editorial-100">
-                  {item.client_name}
-                </div>
-                <div className="text-xs text-editorial-400">
-                  {item.role} · {item.company}
+        <div className="mt-8 w-full max-w-full min-w-0">
+          <div className="flex w-full max-w-full min-w-0 gap-4 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory no-scrollbar overscroll-x-contain md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:overflow-visible md:pb-0 md:pt-0">
+            {testimonials.map((item) => (
+              <div
+                key={item.id}
+                className="group flex w-[84vw] max-w-[320px] sm:w-[340px] min-w-0 flex-shrink-0 flex-col justify-between rounded-2xl border border-surface-border bg-surface p-6 snap-start transition-all hover:border-orange-500/30 hover:bg-surface-hover md:w-auto md:max-w-none md:flex-shrink md:p-8"
+              >
+                <p className="text-sm leading-relaxed text-editorial-300 italic">
+                  &ldquo;{item.testimonial}&rdquo;
+                </p>
+                <div className="mt-6 border-t border-surface-border/50 pt-4">
+                  <div className="text-sm font-semibold text-editorial-100">
+                    {item.client_name}
+                  </div>
+                  <div className="text-xs text-editorial-400">
+                    {item.role} · {item.company}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 

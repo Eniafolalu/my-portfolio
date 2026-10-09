@@ -44,78 +44,44 @@ export default async function AboutPage() {
               "Product Designer focused on creating intuitive, scalable and visually refined experiences across mobile apps, websites and dashboards."}
           </p>
 
-          {/* Skills tags */}
-          <div className="mt-8 flex flex-wrap gap-2">
-            {skills.slice(0, 6).map((skill) => (
-              <span
-                key={skill}
-                className="rounded-full border border-surface-border bg-surface px-3 py-1 text-xs font-medium text-editorial-300"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <div className="mt-10">
-            <Link
-              href="#timeline"
-              className="group inline-flex items-center gap-2 text-sm font-semibold text-orange-400 transition-colors hover:text-orange-300"
-            >
-              <span>Explore Full Journey &amp; Timeline</span>
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </div>
         </div>
 
         {/* RIGHT: portrait image */}
         <div className="flex items-start justify-center lg:col-span-5">
-          <div className="w-full max-w-sm lg:max-w-none">
-            {/* 3:4 portrait container */}
-            <div
-              className="relative w-full overflow-hidden rounded-3xl border border-surface-border bg-surface-muted"
-              style={{ paddingBottom: "133.33%" }}
-            >
-              {settings?.profile_image_url ? (
-                <Image
-                  src={settings.profile_image_url}
-                  alt={settings?.owner_name || "Profile photo"}
-                  fill
-                  sizes="(max-width: 768px) 80vw, (max-width: 1024px) 45vw, 36vw"
-                  className="object-cover object-top"
-                  priority
-                />
-              ) : (
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                  <span className="font-display text-6xl font-semibold text-editorial-300">
-                    {(settings?.owner_name || "EA")
-                      .split(" ")
-                      .map((n: string) => n[0])
-                      .slice(0, 2)
-                      .join("")}
-                  </span>
-                  <span className="text-xs font-semibold uppercase tracking-widest text-editorial-400">
-                    {settings?.professional_title || "Product Designer"}
-                  </span>
-                </div>
-              )}
-              {/* Editorial bottom-fade */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-background/40 to-transparent" />
-            </div>
+          <div className="relative w-full max-w-sm lg:max-w-md">
+            {/* Ambient Background Glow */}
+            <div className="absolute -inset-2 rounded-[2.5rem] bg-gradient-to-tr from-orange-500/20 via-orange-500/5 to-transparent blur-2xl opacity-60" />
 
-            {/* Caption strip */}
-            <div className="mt-4 flex items-center justify-between px-1">
-              <div>
-                <p className="text-sm font-semibold text-editorial-100">
-                  {settings?.owner_name || "Enioluwa Afolalu"}
-                </p>
-                <p className="text-xs text-editorial-400">
-                  {settings?.professional_title || "Product Designer"}
-                </p>
+            {/* Portrait Card */}
+            <div className="relative overflow-hidden rounded-[2.5rem] border border-surface-border bg-surface shadow-2xl shadow-black/80">
+              <div className="relative aspect-[4/5] w-full overflow-hidden bg-surface-muted">
+                <Image
+                  src="/my-image.jpeg"
+                  alt={settings?.owner_name || "Enioluwa Afolalu"}
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 420px"
+                  className="object-cover object-top transition-transform duration-700 hover:scale-[1.03]"
+                />
+                {/* Subtle Editorial Gradient Overlay at bottom */}
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-surface via-surface/30 to-transparent" />
               </div>
-              <span className="rounded-full border border-orange-500/30 bg-orange-500/10 px-3 py-1 text-xs font-semibold text-orange-400">
-                Available for work
-              </span>
+
+              {/* Integrated Caption strip */}
+              <div className="flex items-center justify-between border-t border-surface-border/60 bg-surface/90 px-6 py-4 backdrop-blur-md">
+                <div>
+                  <p className="text-sm font-semibold tracking-tight text-editorial-100">
+                    {settings?.owner_name || "Enioluwa Afolalu"}
+                  </p>
+                  <p className="text-xs text-editorial-400">
+                    {settings?.professional_title || "Product Designer"}
+                  </p>
+                </div>
+                <div className="inline-flex items-center gap-1.5 rounded-full border border-orange-500/30 bg-orange-500/10 px-3 py-1 text-xs font-semibold text-orange-400">
+                  <span className="h-1.5 w-1.5 rounded-full bg-orange-500 animate-pulse" />
+                  <span>Available for work</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -145,28 +111,34 @@ export default async function AboutPage() {
       {/* Career Timeline */}
       <div id="timeline" className="mt-24 border-t border-surface-border pt-16">
         <span className="text-xs font-semibold uppercase tracking-widest text-editorial-400">
-          TIMELINE
+          CAREER & WORK HISTORY
         </span>
         <h2 className="mt-2 text-2xl font-medium text-editorial-50 sm:text-3xl">
-          MY DESIGN JOURNEY
+          JOB EXPERIENCE
         </h2>
 
-        <div className="mt-12 space-y-12 border-l border-surface-border pl-6 md:pl-8">
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
           {careerEntries.map((entry) => (
-            <div key={entry.id} className="relative group">
-              <div className="absolute -left-[31px] md:-left-[39px] top-1.5 h-3 w-3 rounded-full border border-editorial-200 bg-background" />
-              <span className="text-xs font-mono font-medium text-editorial-400">
-                {entry.year}
-              </span>
-              <h3 className="mt-1 text-xl font-medium text-editorial-100">
-                {entry.title}
-                {entry.company && (
-                  <span className="text-editorial-400 font-normal"> · {entry.company}</span>
-                )}
-              </h3>
-              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-editorial-400">
-                {entry.description}
-              </p>
+            <div
+              key={entry.id}
+              className="group flex flex-col justify-between rounded-2xl border border-surface-border bg-surface p-6 sm:p-8 transition-all hover:border-orange-500/30 hover:bg-surface-hover"
+            >
+              <div>
+                <div className="flex items-center justify-between text-xs font-mono">
+                  <span className="text-orange-400 font-medium">{entry.year}</span>
+                  {entry.company && (
+                    <span className="text-xs font-sans uppercase tracking-wider text-editorial-400">
+                      {entry.company}
+                    </span>
+                  )}
+                </div>
+                <h3 className="mt-3 font-display text-lg font-medium text-editorial-100 sm:text-xl">
+                  {entry.title}
+                </h3>
+                <p className="mt-2.5 text-sm leading-relaxed text-editorial-400">
+                  {entry.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>

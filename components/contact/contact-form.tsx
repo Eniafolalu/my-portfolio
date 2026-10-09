@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { CheckCircle2, AlertCircle, MessageCircle } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+
+const WHATSAPP_NUMBER = "2348135526944";
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -13,6 +15,7 @@ export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [whatsappLink, setWhatsappLink] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,22 +24,38 @@ export function ContactForm() {
     setErrorMessage("");
 
     try {
-      const supabase = createClient();
-      const { error } = await supabase.from("contact_messages").insert({
-        name: formData.name,
-        email: formData.email,
-        project_description: formData.project_description,
-      } as any);
+      // Build structured WhatsApp message
+      const messageText = `Hello Enioluwa,
 
-      if (error) {
-        throw new Error(error.message);
+I would like to make an inquiry through your portfolio:
+
+• Name: ${formData.name.trim()}
+• Email: ${formData.email.trim()}
+• Project Inquiry:
+${formData.project_description.trim()}`;
+
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(messageText)}`;
+      setWhatsappLink(url);
+
+      // Attempt recording in Supabase database as backup
+      try {
+        const supabase = createClient();
+        await supabase.from("contact_messages").insert({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          project_description: formData.project_description.trim(),
+        } as any);
+      } catch {
+        // Non-blocking fallback so WhatsApp dispatch is never interrupted
       }
 
+      // Open WhatsApp with prefilled message
+      window.open(url, "_blank", "noopener,noreferrer");
+
       setStatus("success");
-      setFormData({ name: "", email: "", project_description: "" });
     } catch (err: unknown) {
       const message =
-        err instanceof Error ? err.message : "Failed to send message";
+        err instanceof Error ? err.message : "Failed to prepare message";
       setStatus("error");
       setErrorMessage(message);
     } finally {
@@ -47,17 +66,33 @@ export function ContactForm() {
   return (
     <div className="rounded-3xl border border-surface-border bg-surface p-8 sm:p-10">
       {status === "success" ? (
-        <div className="flex flex-col items-center justify-center py-12 text-center">
-          <CheckCircle2 className="h-12 w-12 text-emerald-400" />
+        <div className="flex flex-col items-center justify-center py-10 text-center">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400">
+            <CheckCircle2 className="h-8 w-8" />
+          </div>
           <h3 className="mt-4 text-xl font-medium text-editorial-50">
-            Message Sent Successfully
+            Inquiry Prepared
           </h3>
           <p className="mt-2 max-w-sm text-sm text-editorial-400">
-            Thank you for reaching out. I will review your project details and respond within 24–48 hours.
+            WhatsApp should open automatically. If it didn&apos;t open, tap the button below to send your inquiry directly.
           </p>
+          {whatsappLink && (
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-white shadow-lg shadow-emerald-500/20 transition-all hover:bg-emerald-600 hover:scale-[1.02]"
+            >
+              <MessageCircle className="h-4 w-4" />
+              <span>Open WhatsApp Chat</span>
+            </a>
+          )}
           <button
-            onClick={() => setStatus("idle")}
-            className="mt-6 text-xs font-semibold uppercase tracking-wider text-editorial-300 hover:text-white"
+            onClick={() => {
+              setStatus("idle");
+              setFormData({ name: "", email: "", project_description: "" });
+            }}
+            className="mt-6 text-xs font-semibold uppercase tracking-wider text-editorial-400 hover:text-white"
           >
             Send Another Message
           </button>
@@ -137,10 +172,10 @@ export function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="group flex w-full items-center justify-center gap-2 rounded-xl bg-editorial-100 py-3.5 text-sm font-semibold text-background transition-all hover:bg-white disabled:opacity-50"
+            className="group flex w-full items-center justify-center gap-2 rounded-xl bg-orange-500 py-3.5 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 transition-all hover:bg-orange-600 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50"
           >
-            <Send className="h-4 w-4" />
-            <span>{isSubmitting ? "Sending..." : "Submit Inquiry"}</span>
+            <MessageCircle className="h-4 w-4" />
+            <span>{isSubmitting ? "Connecting..." : "Send via WhatsApp"}</span>
           </button>
         </form>
       )}
