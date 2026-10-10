@@ -100,19 +100,19 @@ export default async function HomePage() {
                 href={calendlyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full bg-orange-500 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 transition-all hover:bg-orange-600 hover:scale-[1.02] active:scale-[0.98]"
+                className="group inline-flex items-center gap-2 rounded-full bg-orange-500 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 transition-all duration-200 hover:bg-orange-600 hover:scale-[1.04] hover:shadow-orange-500/40 active:scale-[0.97]"
               >
-                <Calendar className="h-4 w-4" />
+                <Calendar className="h-4 w-4 transition-transform group-hover:rotate-[-8deg]" />
                 <span className="block md:hidden">Book</span>
                 <span className="hidden md:block">Book a Call</span>
-                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
 
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full border border-surface-border bg-surface/80 px-7 py-3.5 text-sm font-semibold text-editorial-100 transition-all hover:border-orange-500/40 hover:bg-surface-hover"
+                className="group inline-flex items-center gap-2 rounded-full border border-surface-border bg-surface/80 px-7 py-3.5 text-sm font-semibold text-editorial-100 transition-all duration-200 hover:border-orange-500/50 hover:bg-surface-hover hover:text-orange-400 hover:scale-[1.03] active:scale-[0.97]"
               >
-                <MessageSquare className="h-4 w-4 text-editorial-400" />
+                <MessageSquare className="h-4 w-4 text-editorial-400 transition-colors group-hover:text-orange-400" />
                 <span>Send a Message</span>
               </Link>
             </div>

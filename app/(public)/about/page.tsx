@@ -105,7 +105,7 @@ export default async function AboutPage() {
           {skills.map((skill) => (
             <MotionItem
               key={skill}
-              className="rounded-xl border border-surface-border bg-surface p-4 text-xs font-medium text-editorial-200"
+              className="rounded-xl border border-surface-border bg-surface p-4 text-xs font-medium text-editorial-200 transition-all duration-200 hover:border-orange-500/40 hover:bg-surface-hover hover:text-orange-300 hover:scale-[1.03] cursor-default"
             >
               {skill}
             </MotionItem>
@@ -126,7 +126,7 @@ export default async function AboutPage() {
           {careerEntries.map((entry) => (
             <MotionItem
               key={entry.id}
-              className="group flex flex-col justify-between rounded-2xl border border-surface-border bg-surface p-6 sm:p-8 transition-all hover:border-orange-500/30 hover:bg-surface-hover"
+              className="group flex flex-col justify-between rounded-2xl border border-surface-border bg-surface p-6 sm:p-8 transition-all duration-200 hover:border-orange-500/40 hover:bg-surface-hover hover:scale-[1.01] hover:shadow-lg hover:shadow-orange-500/5"
             >
               <div>
                 <div className="flex items-center justify-between text-xs font-mono">

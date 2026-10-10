@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic";
 import { getSiteSettings, getEnabledSocialLinks } from "@/lib/data";
 import { PublicNav } from "@/components/navigation/public-nav";
 import { PublicFooter } from "@/components/footer/public-footer";
+import { ScrollToTop } from "@/components/ui/scroll-to-top";
 
 export default async function PublicLayout({
   children,
@@ -14,7 +15,7 @@ export default async function PublicLayout({
 
   const ownerName = settings?.owner_name || "Enioluwa Afolalu";
   const professionalTitle =
-    settings?.professional_title || "Product Designer · UI/UX Designer";
+    settings?.professional_title || "Product Designer";
   const profileImageUrl = settings?.profile_image_url || null;
   const calendlyUrl = settings?.calendly_url || "https://calendly.com";
 
@@ -27,6 +28,7 @@ export default async function PublicLayout({
         calendlyUrl={calendlyUrl}
       />
       <main className="flex-1 w-full max-w-full overflow-x-hidden min-w-0">{children}</main>
+      <ScrollToTop />
       <PublicFooter
         calendlyUrl={calendlyUrl}
         socialLinks={socials}

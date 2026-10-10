@@ -17,7 +17,7 @@ interface PublicNavProps {
 
 export function PublicNav({
   ownerName = "Enioluwa Afolalu",
-  professionalTitle = "Product Designer · UI/UX Designer",
+  professionalTitle = "Product Designer",
   profileImageUrl,
   calendlyUrl = "https://calendly.com",
 }: PublicNavProps) {
